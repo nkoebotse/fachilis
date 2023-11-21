@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include necessary libraries for generating QR codes -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdn.rawgit.com/neocotic/qrious/v4.0.2/dist/qrious.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Restaurant Menu</h1>
+    </header>
+
+    <div class="menu-container">
+        <div class="menu-item" onclick="addToOrder('Margherita Pizza', 10)">
+            <h3>Margherita Pizza</h3>
+            <p>R 10.00</p>
+        </div>
+
+        <div class="menu-item" onclick="addToOrder('Classic Burger', 8)">
+            <h3>Classic Burger</h3>
+            <p>R 8.00</p>
+        </div>
+
+        <div class="menu-item" onclick="addToOrder('Garden Salad', 5)">
+            <h3>Garden Salad</h3>
+            <p>R 5.00</p>
+        </div>
+    </div>
+
+    <div class="order-container">
+        <h2>Your Order</h2>
+        <ul id="order-list"></ul>
+        <p id="total-price">Total: R 0.00</p>
+        <button onclick="placeOrder()">Place Order</button>
+        <button onclick="checkout()">Checkout</button>
+        <p id="order-status"></p>
+    </div>
+
+    <script>
+        var order = [];
+
+        function addToOrder(item, price) {
+            order.push({ item: item, price: price });
+            updateOrderList();
+        }
+
+        function updateOrderList() {
+            var orderList = document.getElementById("order-list");
+            var totalPrice = 0;
+
+            // Clear the existing list
+            orderList.innerHTML = '';
+
+            // Populate the order list
+            order.forEach(function (item) {
+                var listItem = document.createElement("li");
+                listItem.textContent = item.item + ' - R ' + item.price.toFixed(2);
+                listItem.className = 'order-item';
+                orderList.appendChild(listItem);
+
+                totalPrice += item.price;
+            });
+
+            // Update total price
+            document.getElementById("total-price").textContent = 'Total: R ' + totalPrice.toFixed(2);
+        }
+
+        function placeOrder() {
+            simulateOrderPlacement();
+        }
+
+        function simulateOrderPlacement() {
+            var orderStatusElement = document.getElementById("order-status");
+            orderStatusElement.textContent = 'Placing order...';
+
+            // Simulate an asynchronous request to a backend API
+            setTimeout(function () {
+                var orderStatus = 'Order placed. Being prepared.';
+                orderStatusElement.textContent = orderStatus;
+            }, 2000); // Simulating a 2-second delay (adjust as needed)
+        }
+
+        function checkout() {
+            var orderStatusElement = document.getElementById("order-status");
+            orderStatusElement.textContent = 'Checking out...';
+
+            // Simulate an asynchronous request to a backend API for checkout
+            setTimeout(function () {
+                var orderStatus = 'Order checked out. Displaying QR code for payment...';
+                orderStatusElement.textContent = orderStatus;
+
+                // Generate QR code for payment (using qrious library)
+                var qrCodeContainer = document.getElementById("payment-qr-code");
+
+                // If the QR code container doesn't exist, create it
+                if (!qrCodeContainer) {
+                    qrCodeContainer = document.createElement("div");
+                    qrCodeContainer.id = "payment-qr-code";
+                    document.body.appendChild(qrCodeContainer);
+                }
+
+                // Assuming you have a payment URL, replace it with your actual payment URL
+                var paymentUrl = "https://example.com/payment";
+
+                // Assuming the total price is stored in ZAR (South African Rand)
+                var totalPriceZAR = calculateTotalPrice(); // Implement this function to calculate the total price
+                var totalPriceString = totalPriceZAR.toFixed(2) + " ZAR";
+
+                // Generate QR code
+                new QRious({
+                    element: qrCodeContainer,
+                    value: paymentUrl + "?amount=" + totalPriceZAR,
+                    size: 300
+                });
+
+                // Clear the order list after checkout
+                order = [];
+                updateOrderList();
+            }, 2000); // Simulating a 2-second delay (adjust as needed)
+        }
+
+        function calculateTotalPrice() {
+            // Implement this function to calculate the total price of the order
+            // For simplicity, let's assume each menu item has a price property
+            var total = 0;
+            order.forEach(function (item) {
+                total += item.price;
+            });
+            return total;
+        }
+    </script>
+</body>
+
+</html>
