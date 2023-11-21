@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login Page</title>
+</head>
+<body style="background-image: url('{{ url_for('static', filename='images/pexels: ella olsson -1640773em.jpg') }}');">
+    <div class="login-container">
+        <h1>Restaurant Login</h1>
+        <form id="login-form" onsubmit="return validateForm()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="options">
+            <a href="#">Forgot Password?</a>
+            <span class="divider">|</span>
+            <a href="#">Create Account</a>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters long.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
