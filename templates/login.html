@@ -1,3 +1,4 @@
+<!-- templates/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Login Page</title>
 </head>
-<body style="background-image: url('{{ url_for('static', filename='images/pexels: ella olsson -1640773em.jpg') }}');">
-    <div class="login-container">
+<body style="background-image: url('{{ url_for('static', filename='images/pexels-ella-olsson-1640773.jpg') }}');">
+    <div class="container">
         <h1>Restaurant Login</h1>
-        <form id="login-form" onsubmit="return validateForm()">
+        <form id="login-form" action="{{ url_for('menu') }}" method="post" onsubmit="return validateForm()">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
@@ -20,9 +21,9 @@
         </form>
 
         <div class="options">
-            <a href="#">Forgot Password?</a>
+            <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
             <span class="divider">|</span>
-            <a href="#">Create Account</a>
+            <a href="{{ url_for('create_account') }}">Create Account</a>
         </div>
     </div>
 
