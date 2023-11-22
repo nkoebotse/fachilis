@@ -1,4 +1,3 @@
-<!-- templates/menu.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,28 +8,28 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Our Restaurant!</h1>
+        <h1>Welcome to FACHILIS Restaurant!</h1>
 
         <!-- Menu Items -->
         <div class="menu">
             <div class="menu-item" id="burger">
-                <img src="{{ url_for('static', filename='images/burger.jpg') }}" alt="Burger">
-                <h3>Burger</h3>
-                <p>Delicious burger with all the toppings</p>
+                <img src="{{ url_for('static', filename='images/kota.jpeg') }}" alt="Kota">
+                <h3>Kota</h3>
+                <p>Delicious kota with all the toppings</p>
                 <p class="price">Price: R50</p>
-                <button onclick="addToOrder('Burger', 50)">Add to Order</button>
+                <button onclick="addToOrder('Kota', 50)">Add to Order</button>
             </div>
 
             <div class="menu-item" id="pizza">
-                <img src="{{ url_for('static', filename='images/pizza.jpg') }}" alt="Pizza">
-                <h3>Pizza</h3>
-                <p>Classic pizza with your favorite toppings</p>
+                <img src="{{ url_for('static', filename='images/pizza.jpeg') }}" alt="Pizza">
+                <h3>Pap and Stew Beef</h3>
+                <p>Classic pap & stew beef with your favorite toppings</p>
                 <p class="price">Price: R75</p>
                 <button onclick="addToOrder('Pizza', 75)">Add to Order</button>
             </div>
 
             <div class="menu-item" id="pasta">
-                <img src="{{ url_for('static', filename='images/pasta.jpg') }}" alt="Pasta">
+                <img src="{{ url_for('static', filename='images/pasta.jpeg') }}" alt="Pasta">
                 <h3>Pasta</h3>
                 <p>Delicious pasta with savory sauce</p>
                 <p class="price">Price: R60</p>
