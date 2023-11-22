@@ -57,7 +57,7 @@ body {
 }
 
 #login-form button:hover {
-    background-color: #145588; /* Darker shade of Facebook blue color */
+    background-color: #145588; 
 }
 
 /* Menu Styling */
@@ -134,4 +134,14 @@ body {
 
 .order-summary p {
     font-weight: bold;
+}
+
+/* Create Account Page Styling */
+.create-account-container {
+    margin-top: 50px;
+}
+
+/* Forgot Password Page Styling */
+.forgot-password-container {
+    margin-top: 50px;
 }
